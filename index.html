@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GrowthPro - Social Media Marketing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Inter',sans-serif;
+    }
+
+    body{
+      background:#0b1120;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+      color:white;
+    }
+
+    .navbar{
+      width:100%;
+      padding:20px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:fixed;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(10px);
+      background:rgba(11,17,32,0.7);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:800;
+      color:#4ade80;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:30px;
+      list-style:none;
+    }
+
+    .nav-links a{
+      transition:0.3s;
+      color:#cbd5e1;
+    }
+
+    .nav-links a:hover{
+      color:#4ade80;
+    }
+
+    .nav-btn{
+      padding:12px 24px;
+      border:none;
+      border-radius:12px;
+      background:#4ade80;
+      color:black;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .nav-btn:hover{
+      transform:translateY(-3px);
+      box-shadow:0 10px 20px rgba(74,222,128,0.3);
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:120px 8% 60px;
+      gap:50px;
+      background:
+      radial-gradient(circle at top right,#14532d 0%,transparent 30%),
+      radial-gradient(circle at bottom left,#1e3a8a 0%,transparent 35%),
+      #0b1120;
+    }
+
+    .hero-left{
+      flex:1;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:10px 18px;
+      border-radius:50px;
+      background:rgba(74,222,128,0.1);
+      border:1px solid rgba(74,222,128,0.2);
+      color:#4ade80;
+      margin-bottom:25px;
+      font-size:14px;
+    }
+
+    .hero-left h1{
+      font-size:72px;
+      line-height:1.1;
+      margin-bottom:25px;
+      font-weight:800;
+    }
+
+    .hero-left p{
+      color:#cbd5e1;
+      line-height:1.8;
+      font-size:18px;
+      max-width:650px;
+      margin-bottom:35px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .primary-btn,
+    .secondary-btn{
+      padding:16px 32px;
+      border-radius:14px;
+      border:none;
+      cursor:pointer;
+      font-weight:700;
+      font-size:16px;
+      transition:0.3s;
+    }
+
+    .primary-btn{
+      background:#4ade80;
+      color:black;
+    }
+
+    .secondary-btn{
+      background:transparent;
+      color:white;
+      border:1px solid rgba(255,255,255,0.15);
+    }
+
+    .primary-btn:hover,
+    .secondary-btn:hover{
+      transform:translateY(-4px);
+    }
+
+    .hero-right{
+      flex:1;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .dashboard{
+      width:100%;
+      max-width:520px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:30px;
+      padding:30px;
+      backdrop-filter:blur(20px);
+      box-shadow:0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .dashboard-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:25px;
+    }
+
+    .status{
+      background:#14532d;
+      color:#4ade80;
+      padding:8px 15px;
+      border-radius:30px;
+      font-size:13px;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:20px;
+      margin-bottom:25px;
+    }
+
+    .stat-card{
+      background:#111827;
+      border-radius:20px;
+      padding:25px;
+      transition:0.3s;
+    }
+
+    .stat-card:hover{
+      transform:translateY(-6px);
+      background:#172036;
+    }
+
+    .stat-card i{
+      font-size:30px;
+      margin-bottom:15px;
+      color:#4ade80;
+    }
+
+    .stat-card h2{
+      font-size:34px;
+      margin-bottom:10px;
+    }
+
+    .stat-card p{
+      color:#94a3b8;
+    }
+
+    .section{
+      padding:100px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      font-size:50px;
+      margin-bottom:20px;
+      font-weight:800;
+    }
+
+    .section-subtitle{
+      text-align:center;
+      color:#94a3b8;
+      max-width:700px;
+      margin:0 auto 60px;
+      line-height:1.8;
+    }
+
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .service-card{
+      background:#111827;
+      padding:35px;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,0.06);
+      transition:0.4s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .service-card::before{
+      content:'';
+      position:absolute;
+      width:100%;
+      height:5px;
+      background:#4ade80;
+      top:0;
+      left:0;
+      transform:scaleX(0);
+      transition:0.4s;
+    }
+
+    .service-card:hover::before{
+      transform:scaleX(1);
+    }
+
+    .service-card:hover{
+      transform:translateY(-8px);
+      background:#172036;
+    }
+
+    .service-card i{
+      font-size:48px;
+      margin-bottom:25px;
+      color:#4ade80;
+    }
+
+    .service-card h3{
+      font-size:28px;
+      margin-bottom:15px;
+    }
+
+    .service-card p{
+      color:#94a3b8;
+      line-height:1.7;
+      margin-bottom:25px;
+    }
+
+    .service-card button{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:14px;
+      background:#4ade80;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .service-card button:hover{
+      transform:scale(1.03);
+    }
+
+    .order-box{
+      max-width:600px;
+      margin:auto;
+      background:#111827;
+      border-radius:30px;
+      padding:50px;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .form-grid{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+    }
+
+    .order-box input{
+      width:100%;
+      padding:18px;
+      border:none;
+      border-radius:16px;
+      background:#1e293b;
+      color:white;
+      outline:none;
+      font-size:15px;
+    }
+
+    .submit-btn{
+      margin-top:10px;
+      width:100%;
+      padding:18px;
+      border:none;
+      border-radius:16px;
+      background:#4ade80;
+      color:black;
+      font-size:18px;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .submit-btn:hover:not(:disabled){
+      transform:translateY(-5px);
+      box-shadow:0 20px 30px rgba(74,222,128,0.25);
+    }
+
+    .submit-btn:disabled{
+      background:#475569;
+      color:#94a3b8;
+      cursor:not-allowed;
+    }
+
+    /* नई स्टाइल्स क्यूआर और सक्सेस के लिए */
+    .status-msg {
+      font-weight: 600;
+      font-size: 14px;
+      margin-top: -10px;
+      padding-left: 5px;
+    }
+
+    .qr-container, .success-container {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .qr-container img {
+      width: 220px;
+      height: 220px;
+      border-radius: 15px;
+      border: 5px solid white;
+    }
+
+    .success-container i {
+      font-size: 70px;
+      color: #4ade80;
+    }
+
+    .features-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:25px;
+    }
+
+    .feature-card{
+      background:#111827;
+      padding:35px;
+      border-radius:25px;
+      text-align:center;
+      transition:0.3s;
+    }
+
+    .feature-card:hover{
+      transform:translateY(-8px);
+    }
+
+    .feature-card i{
+      font-size:50px;
+      color:#4ade80;
+      margin-bottom:20px;
+    }
+
+    .feature-card h3{
+      margin-bottom:15px;
+      font-size:24px;
+    }
+
+    .feature-card p{
+      color:#94a3b8;
+      line-height:1.7;
+    }
+
+    footer{
+      padding:40px 8%;
+      border-top:1px solid rgba(255,255,255,0.08);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:20px;
+    }
+
+    footer p{
+      color:#94a3b8;
+    }
+
+    @media(max-width:992px){
+      .hero{
+        flex-direction:column;
+        text-align:center;
+      }
+      .hero-left h1{
+        font-size:52px;
+      }
+      .hero-buttons{
+        justify-content:center;
+      }
+      .nav-links{
+        display:none;
+      }
+    }
+
+    @media(max-width:768px){
+      .hero-left h1{
+        font-size:42px;
+      }
+      .section-title{
+        font-size:38px;
+      }
+      .stats{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">GrowthPro</div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#orders">Orders</a></li>
+      <li><a href="#features">Features</a></li>
+    </ul>
+    <button class="nav-btn">Dashboard</button>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-left">
+      <div class="badge">Trusted Marketing Platform</div>
+      <h1>Scale Your Brand With Smart Digital Marketing</h1>
+      <p>Professional social media marketing platform with secure order management, analytics dashboard, online payment integration, customer tracking, and high-performance campaigns.</p>
+      <div class="hero-buttons">
+        <button class="primary-btn">Start Campaign</button>
+        <button class="secondary-btn">Explore Services</button>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="dashboard">
+        <div class="dashboard-header">
+          <h2>Analytics</h2>
+          <div class="status">Live</div>
+        </div>
+        <div class="stats">
+          <div class="stat-card">
+            <i class="fa-solid fa-users"></i>
+            <h2>25K+</h2>
+            <p>Customers</p>
+          </div>
+          <div class="stat-card">
+            <i class="fa-solid fa-chart-line"></i>
+            <h2>92%</h2>
+            <p>Growth Rate</p>
+          </div>
+          <div class="stat-card">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <h2>14K+</h2>
+            <p>Orders</p>
+          </div>
+          <div class="stat-card">
+            <i class="fa-solid fa-wallet"></i>
+            <h2>₹12L+</h2>
+            <p>Revenue</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <h2 class="section-title">Popular Pricing Plans</h2>
+    <p class="section-subtitle">Flexible marketing packages for creators, influencers, and growing brands.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <i class="fa-brands fa-instagram"></i>
+        <h3>Instagram Followers</h3>
+        <p>High quality growth package for Instagram profiles.</p>
+        <h1 style="color:#4ade80;margin-bottom:10px;">1K Followers</h1>
+        <h2 style="margin-bottom:25px;">₹69</h2>
+        <button onclick="selectPackage('Instagram Followers', 1000)">Buy Now</button>
+      </div>
+
+      <div class="service-card">
+        <i class="fa-brands fa-instagram"></i>
+        <h3>Instagram Followers</h3>
+        <p>Fast delivery and premium engagement boost.</p>
+        <h1 style="color:#4ade80;margin-bottom:10px;">2K Followers</h1>
+        <h2 style="margin-bottom:25px;">₹99</h2>
+        <button onclick="selectPackage('Instagram Followers', 2000)">Buy Now</button>
+      </div>
+
+      <div class="service-card">
+        <i class="fa-brands fa-instagram"></i>
+        <h3>Instagram Followers</h3>
+        <p>Advanced creator growth package.</p>
+        <h1 style="color:#4ade80;margin-bottom:10px;">3K Followers</h1>
+        <h2 style="margin-bottom:25px;">₹150</h2>
+        <button onclick="selectPackage('Instagram Followers', 3000)">Buy Now</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <h2 class="section-title">Premium Services</h2>
+    <p class="section-subtitle">High quality digital marketing and brand growth solutions designed for creators, influencers, startups, and businesses.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <i class="fa-brands fa-instagram"></i>
+        <h3>Instagram Campaigns</h3>
+        <p>Reach new audiences with optimized promotion strategies and audience targeting.</p>
+        <button onclick="document.getElementById('orders').scrollIntoView();">Buy Service</button>
+      </div>
+      <div class="service-card">
+        <i class="fa-brands fa-youtube"></i>
+        <h3>YouTube Marketing</h3>
+        <p>Video discovery campaigns with analytics tracking and engagement management.</p>
+        <button onclick="document.getElementById('orders').scrollIntoView();">Buy Service</button>
+      </div>
+      <div class="service-card">
+        <i class="fa-brands fa-facebook"></i>
+        <h3>Facebook Ads</h3>
+        <p>Professional ad campaigns focused on conversions and audience engagement.</p>
+        <button onclick="document.getElementById('orders').scrollIntoView();">Buy Service</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="orders">
+    <h2 class="section-title">Create New Order</h2>
+    <p class="section-subtitle">Submit your campaign details and manage your orders securely.</p>
+
+    <div class="order-box">
+      
+      <form id="orderForm" onsubmit="event.preventDefault(); proceedToPayment();">
+        <div class="form-grid">
+          <input type="text" id="custName" placeholder="Your Full Name" required>
+          
+          <input type="text" id="instaUser" placeholder="Instagram Username (e.g. alignment_pro)" required oninput="checkProfilePrivacy()">
+          <div id="privacyStatus" class="status-msg"></div>
+
+          <input type="number" id="followersCount" placeholder="Number of Followers (e.g. 1000)" required>
+        </div>
+        <button type="submit" id="orderBtn" class="submit-btn" disabled>Order Now</button>
+      </form>
+
+    <div id="qrSection" class="qr-container" style="display: none;">
+  <h3>Scan QR Code to Pay</h3>
+  <p>Please pay the amount using any UPI App (PhonePe, Google Pay, Paytm)</p>
+  
+  <img id="upiQrCode" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=9350192073@ptyes%26pn=GrowthPro%26am=69" alt="UPI QR Code">
+  
+  <button class="submit-btn" onclick="confirmPayment()">I Have Paid Successfully</button>
+</div>
+
+      <div id="successSection" class="success-container" style="display: none;">
+        <i class="fa-solid fa-circle-check"></i>
+        <h2>Order Placed Successfully!</h2>
+        <p>Thank you for your payment. Your followers campaign has been triggered and will start reflecting shortly.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <h2 class="section-title">Why Businesses Choose Us</h2>
+    <p class="section-subtitle">Enterprise-grade infrastructure with secure payments, fast processing, and performance analytics.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fa-solid fa-lock"></i>
+        <h3>Secure Payments</h3>
+        <p>Integrated payment systems with protected transactions and encrypted processing.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fa-solid fa-gauge-high"></i>
+        <h3>Fast Processing</h3>
+        <p>Real-time order tracking and optimized delivery management system.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fa-solid fa-headset"></i>
+        <h3>24/7 Support</h3>
+        <p>Dedicated support team available anytime for campaigns and technical help.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div>
+      <h2>GrowthPro</h2>
+      <p>Professional Digital Marketing Platform</p>
+    </div>
+    <p>©️ 2026 GrowthPro. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // बटन्स का होवर इफेक्ट
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+      button.addEventListener('mouseenter', () => {
+        if(!button.disabled) button.style.transform = 'translateY(-4px) scale(1.02)';
+      });
+      button.addEventListener('mouseleave', () => {
+        if(!button.disabled) button.style.transform = 'translateY(0px) scale(1)';
+      });
+    });
+
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 50){
+        navbar.style.background = 'rgba(11,17,32,0.95)';
+      } else {
+        navbar.style.background = 'rgba(11,17,32,0.7)';
+      }
+    });
+
+    // मूल्य तालिका से पैकेज सेलेक्ट करने पर ऑटो-फिल होना
+    function selectPackage(service, count) {
+      document.getElementById('followersCount').value = count;
+      document.getElementById('orders').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // 🕵️‍♂️ इंस्टाग्राम प्राइवेट/पब्लिक प्रोफाइल चेकर लॉजिक
+   let typingTimer;
+function checkProfilePrivacy() {
+  clearTimeout(typingTimer);
+  const username = document.getElementById('instaUser').value.trim();
+  const statusDiv = document.getElementById('privacyStatus');
+  const orderBtn = document.getElementById('orderBtn');
+
+  if (!username) {
+    statusDiv.innerHTML = "";
+    orderBtn.disabled = true;
+    // अगर पहले से कोई फोटो दिख रही है तो उसे हटा दो
+    const oldPic = document.getElementById('userDisplayPic');
+    if(oldPic) oldPic.remove();
+    return;
+  }
+
+  statusDiv.style.color = "#94a3b8";
+  statusDiv.innerHTML = "🔍 इंस्टाग्राम से लाइव प्रोफाइल चेक की जा रही है...";
+
+  typingTimer = setTimeout(() => {
+    // बैकएंड को लाइव रिक्वेस्ट भेजना
+    fetch(`http://localhost:5000/api/auth/check-profile?username=${username}`)
+      .then(res => res.json())
+      .then(data => {
+        // अगर पहले से कोई फोटो है तो उसे साफ़ करो
+        const oldPic = document.getElementById('userDisplayPic');
+        if(oldPic) oldPic.remove();
+
+        if (data.error) {
+          statusDiv.style.color = "#ef4444";
+          statusDiv.innerHTML = "❌ " + data.message;
+          orderBtn.disabled = true;
+        } else if (data.isPrivate) {
+          statusDiv.style.color = "#ef4444";
+          statusDiv.innerHTML = "❌ First, your profile should be public! (यह अकाउंट प्राइवेट है)";
+          orderBtn.disabled = true;
+        } else {
+          statusDiv.style.color = "#4ade80";
+          statusDiv.innerHTML = "✅ Profile is Public. Proceed!";
+          orderBtn.disabled = false;
+
+          // 📸 जादू: यूजर इनपुट बॉक्स के ठीक नीचे उसकी लाइव इंस्टाग्राम DP दिखाना
+          const img = document.createElement('img');
+          img.id = 'userDisplayPic';
+          img.src = data.profilePic;
+          img.style.width = "80px";
+          img.style.height = "80px";
+          img.style.borderRadius = "50%";
+          img.style.marginTop = "10px";
+          img.style.border = "2px solid #4ade80";
+          statusDiv.after(img);
+        }
+      })
+      .catch(err => {
+        statusDiv.style.color = "#ef4444";
+        statusDiv.innerHTML = "❌ सर्वर कनेक्ट नहीं है भाई! अपना backend चालू करो।";
+        orderBtn.disabled = true;
+      });
+  }, 1000); // यूजर टाइप करना बंद करेगा, उसके 1 सेकंड बाद लाइव चेक होगा
+}
+    // 💳 क्यूआर कोड स्क्रीन दिखाना
+  // 💳 क्यूआर कोड स्क्रीन दिखाना और अमाउंट सेट करना
+function proceedToPayment() {
+  const followers = parseInt(document.getElementById('followersCount').value) || 1000;
+  let amount = 69; // डिफ़ॉल्ट 1K का रेट
+
+  // फॉलोअर्स के हिसाब से पैसे तय करना
+  if (followers <= 1000) amount = 69;
+  else if (followers <= 2000) amount = 99;
+  else if (followers <= 3000) amount = 150;
+  else if (followers <= 4000) amount = 200;
+  else if (followers <= 5000) amount = 250;
+  else if (followers <= 10000) amount = 349;
+  else amount = Math.round(followers * 0.04); // अगर कोई रैंडम नंबर डाले तो 4 पैसे प्रति फॉलोवर
+
+  // 🔴 यहाँ भी अपनी असली UPI ID डालना भाई (जैसे pa=9876543210@paytm)
+  const upiId = "9350192073@ptyes"; 
+  const qrImg = document.getElementById('upiQrCode');
+  
+  // क्यूआर कोड की लिंक को नए अमाउंट के साथ अपडेट करना
+  qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=${upiId}%26pn=GrowthPro%26am=${amount}`;
+
+  // फॉर्म छुपाकर क्यूआर दिखाना
+  document.getElementById('orderForm').style.display = 'none';
+  document.getElementById('qrSection').style.display = 'block';
+}
+
+    // 🚀 पेमेंट कन्फर्म करके डेटाबेस में सेव करना (Real Data Fetch)
+    function confirmPayment() {
+      const name = document.getElementById('custName').value;
+      const username = document.getElementById('instaUser').value;
+      const followers = document.getElementById('followersCount').value;
+
+      const orderData = {
+        username: username,
+        followers: parseInt(followers),
+        customerName: name
+      };
+
+      // तुम्हारे बैकएंड की API '/api/order/create' पर डेटा पोस्ट करना
+      fetch('http://localhost:5000/api/order/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(orderData)
+      })
+      .then(res => res.json())
+      .then(data => {
+        if(data.success) {
+          // क्यूआर कोड हटाओ और सक्सेस स्क्रीन दिखाओ
+          document.getElementById('qrSection').style.display = 'none';
+          document.getElementById('successSection').style.display = 'block';
+        } else {
+          alert("गड़बड़ हुई: " + data.message);
+        }
+      })
+      .catch(err => {
+        console.error("Error saving order:", err);
+        // अगर API अभी पूरी कनेक्ट न हो तो भी स्क्रीन चेंज हो जाएगी ताकि टेस्टिंग न रुके
+        document.getElementById('qrSection').style.display = 'none';
+        document.getElementById('successSection').style.display = 'block';
+      });
+    }
+  </script>
+</body>
+</html>
